@@ -1,0 +1,127 @@
+#!/bin/zsh
+
+# Define the main function
+dev() {
+    # not ideal but this script is sourced in .zshrc therefore, we don't want 
+    # unnecessary message showing help for this CLI
+    if [[ $# -eq 0 ]]; then
+        return 0
+    fi
+
+    if [ $# -eq 1 ] && [ ${1} = "--help" ]; then
+        display_help
+        return 0
+    fi
+
+    local subcommand="$1"
+    shift 1
+
+    case "$subcommand" in
+        dbs)
+            dbs "$@"
+            ;;
+        # poetry)
+        #     poetry "$@"
+            # ;;
+        info)
+            info "$@"
+            ;;
+        help)
+            display_help
+            ;;
+        *)
+            echo "Unknown subcommand: $subcommand"
+            display_help
+            return 1
+            ;;
+    esac
+}
+
+# Subcommand: dbs
+dbs() {
+    # it's not a good practice to check in secrets to private repo on the web
+    # therefore, relying on local .extra file as dependency
+    source ~/.extra
+
+    local name="$1"
+    if [[ $name = "admin" ]]; then
+        export DATABRICKS_HOST=${DATABRICKS_HOST}
+        export DATABRICKS_TOKEN=${DATABRICKS_TOKEN}
+        export MLFLOW_TRACKING_URI=databricks
+        echo "export DATABRICKS_HOST=${DATABRICKS_HOST}"
+        echo "export DATABRICKS_TOKEN=${DATABRICKS_TOKEN}"
+        echo "export MLFLOW_TRACKING_URI=databricks"
+    fi
+
+    if [[ $name = "user" ]]; then
+        export DATABRICKS_HOST=${DATABRICKS_HOST}
+        export DATABRICKS_TOKEN=${DATABRICKS_USER_TOKEN}
+        export MLFLOW_TRACKING_URI=databricks
+        echo "export DATABRICKS_HOST=${DATABRICKS_HOST}"
+        echo "export DATABRICKS_TOKEN=${DATABRICKS_USER_TOKEN}"
+        echo "export MLFLOW_TRACKING_URI=databricks"
+    fi
+
+    if [[ $name = "local" ]]; then
+        unset DATABRICKS_HOST
+        unset DATABRICKS_TOKEN
+        export MLFLOW_TRACKING_URI=http://localhost:5000
+        echo "unset DATABRICKS_HOST"
+        echo "unset DATABRICKS_TOKEN"
+        echo "export MLFLOW_TRACKING_URI=${MLFLOW_TRACKING_URI}"
+    fi
+}
+
+# Subcommand: poetry
+# poetry() {
+#     if [ $# -eq 1 ] && [ ${1} = "--help" ]; then
+#         display_poetry_help
+#         return 0
+#     fi
+
+#     local subcommand="$1"
+#     shift 1
+
+#     case "$subcommand" in
+#         clean)
+#             poetry_clean "$@"
+#             ;;
+#         help)
+#             display_poetry_help
+#             ;;
+#         *)
+#             echo "Unknown subcommand: $subcommand"
+#             display_poetry_help
+#             return 1
+#             ;;
+#     esac
+
+# }
+
+# poetry_clean() {
+#     echo "deleting .venv dist tmp ../.prepare_${PWD##*/}"
+#     rm -rf .venv dist tmp && (rm -rf ../.prepare_${PWD##*/} || true)
+# }
+
+# Subcommand: info
+info() {
+    echo "Current shell: $SHELL"
+    echo "Home directory: $HOME"
+    echo "Current directory: $(pwd)"
+}
+
+# Help function
+display_help() {
+    echo "Usage: dev <subcommand> [args]"
+    echo
+    echo "Subcommands:"
+    echo "  dbs <subcommand>        Databricks automation"
+    echo "  sum <num1> <num2> ...   Calculate the sum of the specified numbers"
+    echo "  info                    Display information about the current environment"
+    echo "  help                    Display this help message"
+}
+
+# Enable the function to be run as a script
+if [[ "${(%):-%N}" == "$0" ]]; then
+    dev "$@"
+fi
