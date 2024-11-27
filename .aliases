@@ -7,7 +7,7 @@ alias h='helm'
 alias i='f(){cd ~/src/github.com/ns-dsnp}; f'
 alias k="kubectl"
 alias n='kubens'
-alias t='terraform'
+alias t='tofu'
 alias z='lazygit'
 
 # poetry related
@@ -89,3 +89,7 @@ alias reload="exec ${SHELL} -l"
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
+
+alias rancher="f(){ cp ~/.kube/config.rancher ~/.kube/config; export KUBECONFIG=~/.kube/config }; f"
+
+alias anthos="f(){ cp ~/.kube/config.anthos ~/.kube/config; export KUBECONFIG=~/.kube/config }; f"

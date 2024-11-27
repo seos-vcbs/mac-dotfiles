@@ -10,6 +10,7 @@ function doIt() {
         --exclude "CREDIT.md" \
         --exclude "NEOVIM.md" \
         --exclude "LICENSE" \
+        --exclude "README.md" \
         -avh --no-perms . ~;
 	source ~/.zshrc;
 }
