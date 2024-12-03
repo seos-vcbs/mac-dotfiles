@@ -6,3 +6,4 @@ export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:$HOME/opt/nvim/bin
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export PATH=$PATH:$HOME/.rd/bin
+export PATH=$PATH:$JAVA_HOME/bin
