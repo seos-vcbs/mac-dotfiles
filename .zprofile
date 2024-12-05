@@ -20,5 +20,3 @@ if [[ -n "$SSH_CONNECTION" && -z "$TMUX_PANE" ]]; then
         echo "tmux or gum is not installed."
     fi
 fi
-
-eval "$(/opt/homebrew/bin/brew shellenv)"

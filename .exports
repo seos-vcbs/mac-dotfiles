@@ -1,6 +1,7 @@
-if [ "$(uname)" = "Darwin" ]; then
-    export JAVA_HOME=$(/usr/libexec/java_home -v 11.0)
-fi
+# Use jenv instead
+# if [ "$(uname)" = "Darwin" ]; then
+#     export JAVA_HOME=$(/usr/libexec/java_home -v 17.0)
+# fi
 
 export MAVEN_HOME=~/opt/maven/cv
 export GRADLE_HOME=~/opt/gradle/cv
