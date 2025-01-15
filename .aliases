@@ -9,6 +9,7 @@ alias k="kubectl"
 alias n='kubens'
 alias t='tofu'
 alias z='lazygit'
+alias m='minikube'
 
 # poetry related
 if [ "$(uname)" = "Darwin" ]; then export SEP=" "; else export SEP=""; fi
