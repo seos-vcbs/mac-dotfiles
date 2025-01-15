@@ -93,3 +93,5 @@ alias path='echo -e ${PATH//:/\\n}'
 alias rancher="f(){ cp ~/.kube/config.rancher ~/.kube/config; export KUBECONFIG=~/.kube/config }; f"
 
 alias anthos="f(){ cp ~/.kube/config.anthos ~/.kube/config; export KUBECONFIG=~/.kube/config }; f"
+
+alias mkube="f(){ cp ~/.kube/config.mkube ~/.kube/config; export KUBECONFIG=~/.kube/config }; f"
