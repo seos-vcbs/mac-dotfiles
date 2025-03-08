@@ -5,6 +5,7 @@ alias c='kubectx'
 alias g="git"
 alias h='helm'
 alias i='f(){cd ~/src/github.com/ns-dsnp}; f'
+alias j='f(){cd ~/src/github.com/curiosinauts}; f'
 alias k="kubectl"
 alias n='kubens'
 alias t='tofu'
