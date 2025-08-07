@@ -12,10 +12,10 @@ autoload -U compinit; compinit
 # session-wise fix
 ulimit -n 4096
 
-fpath+=($HOME/.zsh/pure)
-autoload -U promptinit; promptinit
-prompt pure
-zstyle :prompt:pure:path color white
+# fpath+=($HOME/.zsh/pure)
+# autoload -U promptinit; promptinit
+# prompt pure
+# zstyle :prompt:pure:path color white
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -37,3 +37,8 @@ setopt HIST_IGNORE_DUPS
 setopt EXTENDED_HISTORY
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Enable vim mode in your shell
+bindkey -v
+export KEYTIMEOUT=1
+eval "$(starship init zsh)"

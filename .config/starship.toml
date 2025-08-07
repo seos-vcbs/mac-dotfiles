@@ -1,0 +1,79 @@
+# Global Settings
+format = """
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$golang\
+$python\
+$nodejs\
+$docker_context\
+$container\
+$line_break\
+$cmd_duration\
+$package\
+$hostname\
+$character
+"""
+
+add_newline = true
+
+# Character (prompt symbol)
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+vimcmd_symbol = "[❮](bold blue)"
+vimcmd_replace_one_symbol = "[❮](bold yellow)"
+vimcmd_visual_symbol = "[❮](bold purple)"
+
+# Directory
+[directory]
+truncation_length = 3
+truncate_to_repo = false
+style = "blue bold"
+
+# Git Branch
+[git_branch]
+symbol = "🌱 "
+style = "purple"
+format = "on [$symbol$branch]($style) "
+
+# Git Commit (short SHA)
+[git_commit]
+format = "[\\($hash\\)]($style) "
+style = "dimmed"
+
+# Git State (rebase/merge/etc.)
+[git_state]
+style = "yellow"
+format = "\\([$state( $progress_current/$progress_total)]($style)\\) "
+
+# Git Status
+[git_status]
+conflicted = "⚔️ "
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕"
+modified = "✚"
+staged = "●"
+untracked = "…"
+style = "yellow"
+format = "[$all_status$ahead_behind]($style) "
+
+[cmd_duration]
+min_time = 1000  # Show only if > 1s
+show_milliseconds = true
+format = "took [$duration]($style)"
+style = "bold yellow"
+
+# Show current package version (for Node, Python, Go)
+[package]
+symbol = "📦 "
+style = "208"
+format = "is [$symbol$version]($style) "
+
+[hostname]
+ssh_only = true
+format = "on [$hostname]($style) "
+style = "bold dimmed green"
