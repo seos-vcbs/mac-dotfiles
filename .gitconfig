@@ -94,6 +94,11 @@
 [interactive]
   diffFilter = delta --color-only
 
+[user]
+  # Global identity (override in ~/.gitconfig.user if needed)
+  name = seos-vcbs  
+  email = scott.seo@paramount.com 
+
 [include]
   path=~/.config/delta/themes.gitconfig
 

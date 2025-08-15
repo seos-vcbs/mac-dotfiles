@@ -14,6 +14,7 @@ $line_break\
 $cmd_duration\
 $package\
 $hostname\
+${kubernetes}\
 $character
 """
 
@@ -64,7 +65,7 @@ format = "[$all_status$ahead_behind]($style) "
 [cmd_duration]
 min_time = 1000  # Show only if > 1s
 show_milliseconds = true
-format = "took [$duration]($style)"
+format = "took [$duration]($style) "
 style = "bold yellow"
 
 # Show current package version (for Node, Python, Go)
@@ -77,3 +78,19 @@ format = "is [$symbol$version]($style) "
 ssh_only = true
 format = "on [$hostname]($style) "
 style = "bold dimmed green"
+
+[kubernetes]
+disabled = false
+# Show both context and namespace, only display if present
+format = "[$context/$namespace]($style) "
+
+# Use regex-based aliases to shorten long context names.
+# Example: gke-v2-k8s.use1.stage.aws.viacbs.tech -> stage
+[[kubernetes.contexts]]
+context_pattern = '''.*\.(?P<env>dev|stage|prod)\..*'''
+context_alias = "$env"
+
+# Fallback for hyphen- or mixed-delimited names: my-cluster-stage-us -> stage
+[[kubernetes.contexts]]
+context_pattern = '''.*[.-](?P<env>dev|stage|prod)[.-].*'''
+context_alias = "$env"
