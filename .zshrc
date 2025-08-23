@@ -7,7 +7,11 @@ done;
 unset file;
 
 eval "$(pyenv init -)"
-autoload -U compinit; compinit
+# autoload -U compinit; compinit
+autoload -Uz compinit
+compinit
+source <(kubectl completion zsh)
+compdef k=kubectl
 
 # session-wise fix
 ulimit -n 4096
