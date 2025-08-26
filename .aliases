@@ -15,11 +15,11 @@ alias m='minikube'
 # poetry related
 if [ "$(uname)" = "Darwin" ]; then export SEP=" "; else export SEP=""; fi
 alias pe='poetry env use $(cat .python-version)'
-alias pi='pe && poetry lock --no-update && poetry install --sync'
+alias pi='pe && poetry lock && poetry sync'
 alias pb='pe && poetry build-project --with-top-namespace ${PWD##*/}'
 alias pt='poetry run pytest'
 alias pu='mkdir tmp && unzip -q ./dist/*.whl -d tmp/ && cp ./.python-version tmp/ && cp ./pyproject.toml tmp/ && cp ./poetry.lock tmp/'
-alias pz='source $(poetry env info --path)/bin/activate'
+alias pz='eval $(poetry env activate)'
 alias pv="pc && pi && pb && pu && cd tmp && sed -i${SEP}'' -E 's/\s*[{].*[}],?//' pyproject.toml && pi && pz"
 
 # tmux
