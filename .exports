@@ -23,6 +23,6 @@ export EDITOR=nvim
 
 export AWS_DEFAULT_REGION=us-east-1
 export AWS_DEFAULT_OUTPUT=json
-export AWS_PROFILE=vmn-kids-nonprod
+export AWS_PROFILE=local
 
 export TERM=xterm
